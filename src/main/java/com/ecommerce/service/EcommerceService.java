@@ -36,7 +36,7 @@ public class EcommerceService {
     public Page<Product> getProducts(Integer pageNo, String sort, String search) {
         Sort sortBy = Sort.by(Sort.Direction.DESC, sort);
         Pageable pageable = PageRequest.of(pageNo, 20, sortBy);
-        if(search.isEmpty() || Objects.isNull(search)) {
+        if(search.equals("") || Objects.isNull(search)) {
             return  productRepository.findAll(pageable);
         } else {
            return  productRepository.findByTitleContainingIgnoreCase(search,pageable);
