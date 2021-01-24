@@ -136,7 +136,7 @@ public class EcommerceService {
         MultiValueMap<String, String> map= new LinkedMultiValueMap<>();
         map.add("purpose","online book shopping");
         map.add("amount",price);
-        map.add("redirect_url","http://localhost:3000/list");
+        map.add("redirect_url","https://onlinebookshopping21.herokuapp.com");
 
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(map, headers);
         ResponseEntity<Map> response = restTemplate.postForEntity( "https://test.instamojo.com/api/1.1/payment-requests/", request , Map.class );
