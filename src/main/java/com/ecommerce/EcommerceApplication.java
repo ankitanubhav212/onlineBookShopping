@@ -56,7 +56,7 @@ public class EcommerceApplication implements ApplicationRunner {
 				product.setLanguage(String.valueOf(value.get("language_code")));
 				products.add(product);
 			});
-		productRepository.saveAll(products);
+		productRepository.saveAll(products.subList(0,1000));
 		System.out.println("All Item fetched succesfully");
 	}
 
