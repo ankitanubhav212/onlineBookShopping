@@ -34,7 +34,8 @@ public class EcommerceApplication implements ApplicationRunner {
 			if(productRepository.findAll().size() == 0) {
 				ResponseEntity<List<Map<String, Object>>> response = restTemplate.exchange("https://s3-ap-southeast-1.amazonaws.com/he-public-data/books8f8fe52.json", HttpMethod.GET, null, new ParameterizedTypeReference<List<Map<String, Object>>>() {
 				});
-				List<Map<String, Object>> responseBody = response.getBody();
+				List<Map<String, Object>> responseBody1 = response.getBody();
+				List<Map<String, Object>> responseBody = responseBody1.subList(0,1000);
 				List<Product> products = new ArrayList<>();
 				System.out.println("Fetching list of items");
 				responseBody.forEach(value -> {
@@ -58,7 +59,7 @@ public class EcommerceApplication implements ApplicationRunner {
 					product.setLanguage(String.valueOf(value.get("language_code")));
 					products.add(product);
 				});
-				productRepository.saveAll(products.subList(0, 1000));
+				productRepository.saveAll(products);
 				System.out.println("All Item fetched succesfully");
 			}
 	}
